@@ -8,11 +8,11 @@ st.set_page_config(page_title="改善版 Streamlit デモ", layout="wide")
 
 # サイドバーのナビゲーション
 page = st.sidebar.radio("表示するセクションを選んでください", 
-                        ["ホーム", "インタラクティブUI", "データ表示", "ファイルアップロード", "グラフ表示"])
+                        ["ホーム", "インタラクティブUI", "ファイルアップロード"])
 
 # ホーム
 if page == "ホーム":
-    st.title("Streamlit 改善版デモ")
+
     st.markdown("ようこそ！このアプリでは、Streamlitの様々な機能を体験できます。")
     st.info("左のサイドバーからセクションを選んでください。")
 
