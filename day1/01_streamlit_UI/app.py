@@ -27,16 +27,6 @@ elif page == "インタラクティブUI":
     if st.button("送信"):
         st.success(f"{name}さん、{age}歳、{lang}が好きなんですね！")
 
-# データ表示
-elif page == "データ表示":
-    st.header("サンプルデータの表示")
-    df = pd.DataFrame({
-        '名前': ['田中', '鈴木', '佐藤', '高橋', '伊藤'],
-        '年齢': [25, 30, 22, 28, 33],
-        '都市': ['東京', '大阪', '福岡', '札幌', '名古屋']
-    })
-    st.dataframe(df)
-
 # ファイルアップロード
 elif page == "ファイルアップロード":
     st.header("CSVファイルアップロード")
@@ -46,14 +36,26 @@ elif page == "ファイルアップロード":
         st.write("アップロードしたデータ:")
         st.dataframe(df)
 
-# グラフ表示
-elif page == "グラフ表示":
-    st.header("グラフの表示例")
-    chart_data = pd.DataFrame(
-        np.random.randn(20, 3),
-        columns=['A', 'B', 'C']
-    )
-    st.line_chart(chart_data)
+st.header("🩺 今日の健康状態チェック")
+
+with st.form("health_check_form"):
+    mood = st.slider("今日の気分は？（1: 最悪 〜 10: 絶好調）", 1, 10, 5)
+    sleep_hours = st.number_input("昨夜の睡眠時間（時間）", min_value=0.0, max_value=24.0, value=7.0)
+    temperature = st.number_input("今朝の体温（℃）", min_value=35.0, max_value=42.0, value=36.5)
+    appetite = st.selectbox("食欲はありますか？", ["ある", "少しある", "あまりない", "全くない"])
+    
+    submitted = st.form_submit_button("チェックする")
+
+if submitted:
+    st.subheader("📝 チェック結果")
+    if temperature >= 37.5:
+        st.warning("熱があります。無理せず休みましょう。")
+    elif mood <= 3 or appetite in ["あまりない", "全くない"]:
+        st.info("体調が良くないかもしれません。しっかり休んでください。")
+    else:
+        st.success("特に問題なさそうです。今日も元気に過ごしましょう！")
+
+
 
 # フッター
 st.divider()
