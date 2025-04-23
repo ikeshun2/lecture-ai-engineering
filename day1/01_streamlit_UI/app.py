@@ -16,6 +16,29 @@ if page == "ホーム":
     st.markdown("ようこそ！このアプリでは、Streamlitの様々な機能を体験できます。")
     st.info("左のサイドバーからセクションを選んでください。")
 
+    st.title("Streamlit 改善版デモ")
+    st.markdown("ようこそ！このアプリでは、Streamlitの様々な機能を体験できます。")
+    st.info("左のサイドバーからセクションを選んでください。")
+
+    st.header("🩺 今日の健康状態チェック")
+
+    with st.form("health_check_form"):
+        mood = st.slider("今日の気分は？（1: 最悪 〜 10: 絶好調）", 1, 10, 5)
+        sleep_hours = st.number_input("昨夜の睡眠時間（時間）", min_value=0.0, max_value=24.0, value=7.0)
+        temperature = st.number_input("今朝の体温（℃）", min_value=35.0, max_value=42.0, value=36.5)
+        appetite = st.selectbox("食欲はありますか？", ["ある", "少しある", "あまりない", "全くない"])
+        
+        submitted = st.form_submit_button("チェックする")
+
+    if submitted:
+        st.subheader("📝 チェック結果")
+        if temperature >= 37.5:
+            st.warning("熱があります。無理せず休みましょう。")
+        elif mood <= 3 or appetite in ["あまりない", "全くない"]:
+            st.info("体調が良くないかもしれません。しっかり休んでください。")
+        else:
+            st.success("特に問題なさそうです。今日も元気に過ごしましょう！")
+
 # インタラクティブUI
 elif page == "インタラクティブUI":
     st.header("インタラクティブUI")
@@ -35,27 +58,6 @@ elif page == "ファイルアップロード":
         df = pd.read_csv(uploaded_file)
         st.write("アップロードしたデータ:")
         st.dataframe(df)
-
-st.header("🩺 今日の健康状態チェック")
-
-with st.form("health_check_form"):
-    mood = st.slider("今日の気分は？（1: 最悪 〜 10: 絶好調）", 1, 10, 5)
-    sleep_hours = st.number_input("昨夜の睡眠時間（時間）", min_value=0.0, max_value=24.0, value=7.0)
-    temperature = st.number_input("今朝の体温（℃）", min_value=35.0, max_value=42.0, value=36.5)
-    appetite = st.selectbox("食欲はありますか？", ["ある", "少しある", "あまりない", "全くない"])
-    
-    submitted = st.form_submit_button("チェックする")
-
-if submitted:
-    st.subheader("📝 チェック結果")
-    if temperature >= 37.5:
-        st.warning("熱があります。無理せず休みましょう。")
-    elif mood <= 3 or appetite in ["あまりない", "全くない"]:
-        st.info("体調が良くないかもしれません。しっかり休んでください。")
-    else:
-        st.success("特に問題なさそうです。今日も元気に過ごしましょう！")
-
-
 
 # フッター
 st.divider()
