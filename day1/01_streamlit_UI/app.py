@@ -13,11 +13,8 @@ page = st.sidebar.radio("表示するセクションを選んでください",
 # ホーム
 if page == "ホーム":
 
-    st.markdown("ようこそ！このアプリでは、Streamlitの様々な機能を体験できます。")
-    st.info("左のサイドバーからセクションを選んでください。")
-
-    st.title("Streamlit 改善版デモ")
-    st.markdown("ようこそ！このアプリでは、Streamlitの様々な機能を体験できます。")
+    st.title("Streamlitの体験")
+    st.markdown("このアプリでは、Streamlitの様々な機能を体験できます。")
     st.info("左のサイドバーからセクションを選んでください。")
 
     st.header("🩺 今日の健康状態チェック")
