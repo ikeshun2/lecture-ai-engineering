@@ -8,7 +8,7 @@ from sklearn.datasets import fetch_openml
 import warnings
 
 # enshu3/tests から見て2階層上に戻って ensu2 ディレクトリに行くパスを取得
-enshu2_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "enshu2"))
+enshu2_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "演習2"))
 sys.path.append(enshu2_path)
 
 # 警告を抑制
